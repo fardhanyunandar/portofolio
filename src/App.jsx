@@ -1,14 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Github, Mail, Phone, MapPin, ExternalLink, Code2, Database, Briefcase, GraduationCap, Award, ChevronRight, Menu, X, Linkedin, Terminal, Cpu, Layers, Sparkles, Eye } from "lucide-react";
 
-import laporPublikImg from "./assets/LaporPublik.png";
-import wareTrackImg from "./assets/WareTrack.png";
-import dashboardInstitutImg from "./assets/Dashboard-Institut.png";
-import darulFikriDigitalImg from "./assets/Darul Fikri Digital.png";
-import darulQuranRahmanImg from "./assets/Darul Quran Rahman.png";
-import profileImg from "./assets/FardhanMaulana.png";
-import zakiPropertyImg from "./assets/zakiProperty.png";
-import absensiKuImg from "./assets/AbsensiKu.png";
+import laporPublikImg from "./assets/LaporPublik.webp";
+import wareTrackImg from "./assets/WareTrack.webp";
+import dashboardInstitutImg from "./assets/Dashboard-Institut.webp";
+import darulFikriDigitalImg from "./assets/Darul Fikri Digital.webp";
+import darulQuranRahmanImg from "./assets/Darul Quran Rahman.webp";
+import profileImg from "./assets/FardhanMaulana.webp";
+import zakiPropertyImg from "./assets/zakiProperty.webp";
+import absensiKuImg from "./assets/AbsensiKu.webp";
 
 const App = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
