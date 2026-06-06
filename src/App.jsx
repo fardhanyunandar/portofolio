@@ -1477,7 +1477,7 @@ const App = () => {
       </section>
 
       {/* Domainesia Banner */}
-      <div className="flex justify-center py-8">
+      <div className="flex justify-center py-8 hidden">
         <a href="https://my.domainesia.com/ref.php?u=27021" target="_blank" rel="noopener noreferrer" className="hover:scale-105 transition-transform">
           <img
             src="https://dnva.me/v9ev4"
