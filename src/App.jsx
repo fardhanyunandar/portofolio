@@ -58,12 +58,12 @@ const USER_DATA = {
     "Junior Web Developer dengan latar belakang Teknik Komputer dan Jaringan serta pendidikan Pengembangan Perangkat Lunak di PeTIK YBM PLN Jombang. Berpengalaman membangun web application menggunakan Python Flask, PHP MVC, dan MySQL.",
   skills: {
     languages: [
-      { name: "HTML", level: 90, color: "from-orange-400 to-orange-600", icon: <SiHtml5 size={18} className="text-[#E34F26]" /> },
-      { name: "CSS", level: 85, color: "from-blue-400 to-blue-600", icon: <SiCss size={18} className="text-[#1572B6]" /> },
-      { name: "JavaScript", level: 80, color: "from-yellow-400 to-yellow-600", icon: <SiJavascript size={18} className="text-[#E8D44D]" /> },
-      { name: "Python Flask", level: 75, color: "from-blue-500 to-indigo-600", icon: <SiPython size={18} className="text-[#3776AB]" /> },
-      { name: "PHP", level: 80, color: "from-indigo-400 to-purple-600", icon: <SiPhp size={18} className="text-[#777BB4]" /> },
-      { name: "React", level: 60, color: "from-cyan-400 to-blue-500", icon: <SiReact size={18} className="text-[#61DAFB]" /> },
+      { name: "HTML", icon: <SiHtml5 size={18} className="text-[#E34F26]" /> },
+      { name: "CSS", icon: <SiCss size={18} className="text-[#1572B6]" /> },
+      { name: "JavaScript", icon: <SiJavascript size={18} className="text-[#E8D44D]" /> },
+      { name: "Python Flask", icon: <SiPython size={18} className="text-[#3776AB]" /> },
+      { name: "PHP", icon: <SiPhp size={18} className="text-[#777BB4]" /> },
+      { name: "React", icon: <SiReact size={18} className="text-[#61DAFB]" /> },
     ],
     tools: [
       { name: "MySQL", icon: <Database size={16} /> },
@@ -87,7 +87,7 @@ const USER_DATA = {
   },
   projects: [
     {
-      title: "Lapor Publik",
+      title: "LaporPublik",
       tech: ["Python", "Flask", "MySQL", "Google Maps API"],
       description: "Sistem pelaporan masyarakat dengan GPS otomatis dan notifikasi WhatsApp real-time.",
       category: "Fullstack",
@@ -469,18 +469,6 @@ const TiltCard = memo(({ children, className = "", intensity = 15 }) => {
   );
 });
 
-const ScrollProgressBar = memo(() => {
-  const progress = useScrollProgress();
-
-  return (
-    <div className="fixed top-0 left-0 right-0 h-[3px] z-[60] bg-transparent" role="progressbar" aria-valuenow={Math.round(progress)} aria-valuemin={0} aria-valuemax={100}>
-      <div
-        className="h-full bg-gradient-to-r from-blue-500 via-cyan-400 to-blue-500 transition-all duration-100 ease-out shadow-[0_0_10px_rgba(59,130,246,0.5)]"
-        style={{ width: `${progress}%` }}
-      />
-    </div>
-  );
-});
 
 const Toast = memo(({ message, type = "success", isVisible, onClose }) => {
   const icons = {
@@ -753,7 +741,6 @@ const App = () => {
 
   return (
     <div className={`min-h-screen ${bg} ${textPrimary} font-sans selection:bg-blue-500/30 transition-colors duration-500 relative`}>
-      <ScrollProgressBar />
 
       {/* Animated Background */}
       <AnimatedBackground isDark={isDark} />
@@ -814,11 +801,10 @@ const App = () => {
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className={`relative px-4 py-2 text-sm font-medium rounded-xl transition-all duration-300 ${
-                  activeSection === item.id
+                className={`relative px-4 py-2 text-sm font-medium rounded-xl transition-all duration-300 ${activeSection === item.id
                     ? isDark ? "text-white bg-white/10" : "text-slate-900 bg-white shadow-sm"
                     : isDark ? "text-slate-400 hover:text-white" : "text-slate-500 hover:text-slate-900"
-                }`}
+                  }`}
               >
                 {item.label}
               </button>
@@ -847,7 +833,7 @@ const App = () => {
               href={`mailto:${USER_DATA.email}`}
               className="hidden md:flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 text-white rounded-xl text-sm font-semibold transition-all duration-300 hover:shadow-[0_0_25px_rgba(59,130,246,0.4)] hover:scale-105"
             >
-              Hire Me <ArrowUpRight size={14} />
+              Contact Me <ArrowUpRight size={14} />
             </a>
 
             <button
@@ -900,7 +886,7 @@ const App = () => {
               href={`mailto:${USER_DATA.email}`}
               className="mt-4 flex items-center justify-center gap-2 px-5 py-4 bg-gradient-to-r from-blue-600 to-cyan-500 text-white rounded-2xl text-sm font-bold hover:shadow-lg transition-all"
             >
-              Hire Me <ArrowUpRight size={16} />
+              Contact Me <ArrowUpRight size={16} />
             </a>
           </div>
         </div>
@@ -912,7 +898,7 @@ const App = () => {
           {/* Left Column */}
           <RevealSection className="w-full lg:w-3/5 space-y-8">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-500/10 border border-blue-500/20 rounded-full text-blue-400 text-xs font-bold tracking-[0.2em] uppercase">
-              <Sparkles size={14} className="animate-pulse" /> Available for Work
+              <Sparkles size={14} className="animate-pulse" /> Hello, I&#39;m Fardhan!
             </div>
 
             <h1 className={`text-5xl md:text-7xl lg:text-8xl font-black leading-[0.9] tracking-tighter ${textPrimary}`}>
@@ -1037,34 +1023,51 @@ const App = () => {
           </RevealSection>
 
           <div className="grid lg:grid-cols-2 gap-16">
-            {/* Skill Bars */}
+            {/* Skill Section */}
             <RevealSection delay={100}>
               <div className="space-y-8">
+                {/* Section Header */}
                 <h3 className={`text-xl font-bold ${textPrimary} flex items-center gap-3`}>
-                  <div className="w-2 h-8 bg-gradient-to-b from-blue-600 to-cyan-500 rounded-full" /> Proficiency
+                  <div className="w-2 h-8 bg-gradient-to-b from-blue-600 to-cyan-500 rounded-full animate-pulse" />
+                  Proficiency
                 </h3>
-                <div className="grid gap-6">
+
+                {/* Skills Grid */}
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
                   {USER_DATA.skills.languages.map((skill, i) => (
-                    <div key={i} className="group">
-                      <div className="flex justify-between mb-3">
-                        <span className={`font-bold ${textSecondary} group-hover:${textPrimary.replace('text-', 'text-')} transition-colors flex items-center gap-2`}>
-                          <span className="text-lg">{skill.icon}</span> {skill.name}
+                    <div
+                      key={i}
+                      className="group relative flex flex-col items-center justify-center p-6 rounded-2xl border transition-all duration-300 ease-out text-center"
+                      style={{
+                        background: isDark ? "rgba(255,255,255,0.03)" : "rgba(255,255,255,0.65)",
+                        borderColor: isDark ? "rgba(255,255,255,0.10)" : "rgba(15,23,42,0.10)",
+                      }}
+                    >
+                      {/* Efek Spotlight Halus di Background saat Hover */}
+                      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-br from-blue-500/10 to-cyan-500/10 rounded-2xl transition-opacity duration-300 pointer-events-none" />
+
+                      {/* Icon Skill */}
+                      <div className="text-3xl mb-3 transform group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300 ease-out filter drop-shadow-sm" style={{ color: undefined }}>
+                        {skill.icon}
+                      </div>
+
+                      {/* Nama Skill */}
+                      <span
+                        className={`text-sm font-semibold transition-colors duration-300`}
+                        style={{ color: isDark ? "rgba(148,163,184,1)" : "rgba(71,85,105,1)" }}
+                      >
+                        <span className="group-hover:text-blue-400 dark:group-hover:text-cyan-400">
+                          {skill.name}
                         </span>
-                        <span className="text-sm font-mono text-blue-400 font-bold">{skill.level}%</span>
-                      </div>
-                      <div className={`h-3 ${bgSkillTrack} rounded-full p-0.5 overflow-hidden`}>
-                        <div
-                          className={`h-full bg-gradient-to-r ${skill.color} rounded-full transition-all duration-[1500ms] ease-out relative`}
-                          style={{ width: skillsVisible ? `${skill.level}%` : "0%" }}
-                          role="progressbar"
-                          aria-valuenow={skill.level}
-                          aria-valuemin={0}
-                          aria-valuemax={100}
-                          aria-label={`${skill.name} proficiency: ${skill.level}%`}
-                        >
-                          <div className="absolute inset-0 bg-white/20 animate-shimmer" />
-                        </div>
-                      </div>
+                      </span>
+
+                      {/* Hover accent border */}
+                      <div
+                        className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                        style={{
+                          border: `1px solid ${isDark ? "rgba(59,130,246,0.35)" : "rgba(14,165,233,0.35)"}`,
+                        }}
+                      />
                     </div>
                   ))}
                 </div>
@@ -1081,9 +1084,17 @@ const App = () => {
                   {USER_DATA.skills.tools.map((tool, i) => (
                     <span
                       key={i}
-                      className={`px-4 py-2.5 rounded-xl ${bgToolTag} border ${borderCard} ${textSecondary} hover:border-blue-500/50 hover:${textPrimary.replace('text-', 'text-')} hover:scale-105 transition-all duration-300 flex items-center gap-2 text-sm font-medium cursor-default`}
+                      className={`px-4 py-2.5 rounded-xl border transition-all duration-300 flex items-center gap-2 text-sm font-medium cursor-default`}
+                      style={{
+                        background: isDark ? "rgba(255,255,255,0.04)" : "rgba(241,245,249,1)",
+                        borderColor: isDark ? "rgba(255,255,255,0.08)" : "rgba(15,23,42,0.10)",
+                        color: isDark ? "rgba(148,163,184,1)" : "rgba(71,85,105,1)",
+                      }}
                     >
-                      {tool.icon} {tool.name}
+                      <span className="transition-colors group-hover:text-blue-400 dark:group-hover:text-cyan-400">
+                        {tool.icon}
+                      </span>
+                      <span className="select-none">{tool.name}</span>
                     </span>
                   ))}
                 </div>
@@ -1093,11 +1104,21 @@ const App = () => {
                   </h3>
                   <div className="grid grid-cols-2 gap-3">
                     {USER_DATA.skills.softSkills.map((skill, i) => (
-                      <div key={i} className={`flex items-center gap-3 ${textSecondary} text-sm p-3 rounded-xl ${bgToolTag} border ${borderCard} hover:border-blue-500/30 transition-all`}>
+                      <div
+                        key={i}
+                        className={`flex items-center gap-3 text-sm p-3 rounded-xl border transition-all duration-300 group cursor-default`}
+                        style={{
+                          background: isDark ? "rgba(255,255,255,0.04)" : "rgba(248,250,252,1)",
+                          borderColor: isDark ? "rgba(255,255,255,0.08)" : "rgba(15,23,42,0.10)",
+                          color: isDark ? "rgba(148,163,184,1)" : "rgba(71,85,105,1)",
+                        }}
+                      >
                         <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500/20 to-cyan-500/20 flex items-center justify-center flex-shrink-0">
                           {skill.icon}
                         </div>
-                        <span className="font-medium">{skill.name}</span>
+                        <span className="font-medium transition-colors group-hover:text-blue-400 dark:group-hover:text-cyan-400">
+                          {skill.name}
+                        </span>
                       </div>
                     ))}
                   </div>
@@ -1119,7 +1140,7 @@ const App = () => {
                 <div className="w-12 h-1 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full" />
               </div>
               <h2 className={`text-4xl md:text-6xl font-black ${textPrimary} mb-6 tracking-tight`}>
-                Featured <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">Projects</span>
+                My <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">Projects</span>
               </h2>
               <p className={`${textSecondary} text-lg max-w-2xl mx-auto`}>
                 Koleksi proyek terbaik yang menampilkan kemampuan teknis dan kreativitas saya.
@@ -1133,7 +1154,7 @@ const App = () => {
                     className={`px-6 py-2.5 rounded-xl text-sm font-bold transition-all duration-300 border ${activeTab === tab
                       ? "bg-gradient-to-r from-blue-600 to-cyan-500 text-white border-transparent shadow-lg shadow-blue-500/20 scale-105"
                       : isDark ? "text-slate-400 border-white/10 hover:border-white/30 hover:text-white" : "text-slate-500 border-slate-200 hover:border-slate-400 hover:text-slate-900"
-                    }`}
+                      }`}
                   >
                     {tab === "all" ? "Semua" : tab}
                   </button>
@@ -1477,7 +1498,7 @@ const App = () => {
       </section>
 
       {/* Domainesia Banner */}
-      <div className="flex justify-center py-8 hidden">
+      <div className="flex justify-center py-8" hidden>
         <a href="https://my.domainesia.com/ref.php?u=27021" target="_blank" rel="noopener noreferrer" className="hover:scale-105 transition-transform">
           <img
             src="https://dnva.me/v9ev4"
