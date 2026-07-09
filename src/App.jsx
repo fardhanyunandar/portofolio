@@ -233,10 +233,9 @@ const useMousePosition = () => {
   const [isTouchDevice, setIsTouchDevice] = useState(false);
 
   useEffect(() => {
-    // Detect touch device
     const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
     setIsTouchDevice(isTouch);
-    if (isTouch) return; // Skip mouse tracking on touch devices
+    if (isTouch) return;
 
     let rafId;
     const handler = (e) => {
@@ -308,7 +307,6 @@ const useActiveSection = () => {
   return activeSection;
 };
 
-// Hook to detect mobile device
 const useIsMobile = () => {
   const [isMobile, setIsMobile] = useState(false);
 
@@ -350,7 +348,6 @@ const AnimatedBackground = memo(({ isDark }) => {
     };
 
     const createParticles = () => {
-      // Reduce particle count on mobile for better performance
       const count = isMobile
         ? Math.min(20, Math.floor(window.innerWidth / 50))
         : Math.min(40, Math.floor(window.innerWidth / 30));
@@ -383,7 +380,6 @@ const AnimatedBackground = memo(({ isDark }) => {
         ctx.fill();
       });
 
-      // Skip line connections on mobile for performance
       if (!isMobile) {
         particles.forEach((p1, i) => {
           for (let j = i + 1; j < particles.length; j++) {
@@ -514,10 +510,6 @@ const TiltCard = memo(({ children, className = "", intensity = 15 }) => {
   );
 });
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 54dafe4cd251ff6a383e47d207f9211900fd534f
 const Toast = memo(({ message, type = "success", isVisible, onClose }) => {
   const icons = {
     success: <CheckCircle2 className="text-green-500 flex-shrink-0" size={20} />,
@@ -554,7 +546,6 @@ const Toast = memo(({ message, type = "success", isVisible, onClose }) => {
 // ═══════════════════════════════════════════════════════════════
 
 const App = () => {
-  // ─── UI State ───────────────────────────────────────────────
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeTab, setActiveTab] = useState("all");
@@ -569,32 +560,26 @@ const App = () => {
   const [copiedEmail, setCopiedEmail] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
 
-  // ─── Typing Animation ────────────────────────────────────────
   const [roleIndex, setRoleIndex] = useState(0);
   const [displayText, setDisplayText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
 
-  // ─── Intersection Observers ─────────────────────────────────
   const [skillsRef, skillsVisible] = useIntersectionObserver({ threshold: 0.25 });
 
-  // ─── Refs ────────────────────────────────────────────────────
   const drawerRef = useRef(null);
   const closeBtnRef = useRef(null);
   const navRef = useRef(null);
 
-  // ─── Hooks ───────────────────────────────────────────────────
   const { position: mousePos, isTouchDevice } = useMousePosition();
   const activeSection = useActiveSection();
   const isMobile = useIsMobile();
 
-  // ─── Memoized filtered projects ──────────────────────────────
   const filteredProjects = useMemo(() => {
     return activeTab === "all"
       ? USER_DATA.projects
       : USER_DATA.projects.filter((p) => p.category === activeTab);
   }, [activeTab]);
 
-  // ─── Theme classes ──────────────────────────────────────────
   const themeClasses = useMemo(() => ({
     bg: isDark ? "bg-[#0a0a0f]" : "bg-[#fafafa]",
     bgNav: isDark ? "bg-[#0a0a0f]/80" : "bg-white/80",
@@ -613,7 +598,6 @@ const App = () => {
   // EFFECTS
   // ═══════════════════════════════════════════════════════════════
 
-  // Scroll detection
   useEffect(() => {
     let ticking = false;
     const handleScroll = () => {
@@ -630,7 +614,6 @@ const App = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Dark mode
   useEffect(() => {
     const root = document.documentElement;
     if (isDark) {
@@ -642,7 +625,6 @@ const App = () => {
     }
   }, [isDark]);
 
-  // Load saved theme
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");
     if (savedTheme) {
@@ -652,7 +634,6 @@ const App = () => {
     }
   }, []);
 
-  // Typing animation
   useEffect(() => {
     if (!isPlaying) return;
 
@@ -679,7 +660,6 @@ const App = () => {
     return () => clearTimeout(timeout);
   }, [displayText, isDeleting, roleIndex, isPlaying]);
 
-  // Mobile menu focus trap
   useEffect(() => {
     if (!isMenuOpen) return;
 
@@ -795,16 +775,10 @@ const App = () => {
   const { bg, bgNav, bgCard, bgCardHover, borderCard, textPrimary, textSecondary, textMuted, bgToolTag, bgSkillTrack, bgInput } = themeClasses;
 
   return (
-<<<<<<< HEAD
     <div className={`min-h-screen ${bg} ${textPrimary} font-sans selection:bg-blue-500/30 transition-colors duration-500 relative`} style={{ paddingTop: 'env(safe-area-inset-top)', paddingBottom: 'env(safe-area-inset-bottom)' }}>
-=======
-    <div className={`min-h-screen ${bg} ${textPrimary} font-sans selection:bg-blue-500/30 transition-colors duration-500 relative`}>
->>>>>>> 54dafe4cd251ff6a383e47d207f9211900fd534f
 
-      {/* Animated Background */}
       <AnimatedBackground isDark={isDark} />
 
-      {/* Cursor Glow - Desktop only */}
       {!isTouchDevice && (
         <div
           className="fixed w-[500px] h-[500px] rounded-full pointer-events-none z-0 transition-opacity duration-300 hidden lg:block"
@@ -819,7 +793,6 @@ const App = () => {
         />
       )}
 
-      {/* Toast */}
       <Toast
         message={toast.message}
         type={toast.type}
@@ -827,7 +800,6 @@ const App = () => {
         onClose={() => setToast(prev => ({ ...prev, show: false }))}
       />
 
-      {/* Scroll to Top */}
       <button
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         aria-label="Scroll to top"
@@ -845,7 +817,6 @@ const App = () => {
         style={{ paddingTop: 'env(safe-area-inset-top)' }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
-          {/* Logo */}
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             className="flex items-center gap-2 group min-h-[44px]"
@@ -857,17 +828,12 @@ const App = () => {
             </span>
           </button>
 
-          {/* Desktop Nav */}
           <div className={`hidden md:flex items-center gap-1 ${isDark ? "bg-white/[0.03]" : "bg-slate-100/80"} p-1 sm:p-1.5 rounded-2xl border ${borderCard} backdrop-blur-xl`}>
             {NAV_ITEMS.map((item) => (
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-<<<<<<< HEAD
                 className={`relative px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium rounded-xl transition-all duration-300 min-h-[44px] ${activeSection === item.id
-=======
-                className={`relative px-4 py-2 text-sm font-medium rounded-xl transition-all duration-300 ${activeSection === item.id
->>>>>>> 54dafe4cd251ff6a383e47d207f9211900fd534f
                     ? isDark ? "text-white bg-white/10" : "text-slate-900 bg-white shadow-sm"
                     : isDark ? "text-slate-400 hover:text-white" : "text-slate-500 hover:text-slate-900"
                   }`}
@@ -877,7 +843,6 @@ const App = () => {
             ))}
           </div>
 
-          {/* Right Controls */}
           <div className="flex items-center gap-1.5 sm:gap-2 lg:gap-3">
             <button
               onClick={() => setIsPlaying(!isPlaying)}
@@ -895,12 +860,14 @@ const App = () => {
               {isDark ? <Sun size={16} /> : <Moon size={16} />}
             </button>
 
+            
             <a
               href={`mailto:${USER_DATA.email}`}
               className="hidden lg:flex items-center gap-2 px-4 lg:px-5 py-2.5 bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 text-white rounded-xl text-sm font-semibold transition-all duration-300 hover:shadow-[0_0_25px_rgba(59,130,246,0.4)] hover:scale-105 min-h-[44px]"
             >
               Contact Me <ArrowUpRight size={14} />
             </a>
+
 
             <button
               className={`md:hidden ${textPrimary} p-2 rounded-xl hover:bg-white/10 transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center`}
@@ -949,9 +916,11 @@ const App = () => {
                 <ChevronRight size={16} className="opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all" />
               </button>
             ))}
+
             <a
               href={`mailto:${USER_DATA.email}`}
               className="mt-4 flex items-center justify-center gap-2 px-5 py-4 bg-gradient-to-r from-blue-600 to-cyan-500 text-white rounded-2xl text-sm font-bold hover:shadow-lg transition-all min-h-[56px]"
+              onClick={() => setIsMenuOpen(false)}
             >
               Contact Me <ArrowUpRight size={16} />
             </a>
@@ -959,17 +928,12 @@ const App = () => {
         </div>
       </div>
 
+
       {/* ═══ HERO ═══ */}
       <section id="profil" className="relative pt-24 sm:pt-28 md:pt-32 pb-16 sm:pb-20 md:pb-24 px-4 sm:px-6 min-h-screen flex items-center">
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-8 sm:gap-12 lg:gap-16 items-center w-full">
-          {/* Left Column */}
-<<<<<<< HEAD
           <RevealSection className="w-full lg:w-3/5 space-y-6 sm:space-y-8 text-center lg:text-left">
             <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 bg-blue-500/10 border border-blue-500/20 rounded-full text-blue-400 text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase">
-=======
-          <RevealSection className="w-full lg:w-3/5 space-y-8">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-500/10 border border-blue-500/20 rounded-full text-blue-400 text-xs font-bold tracking-[0.2em] uppercase">
->>>>>>> 54dafe4cd251ff6a383e47d207f9211900fd534f
               <Sparkles size={14} className="animate-pulse" /> Hello, I&#39;m Fardhan!
             </div>
 
@@ -991,7 +955,6 @@ const App = () => {
               Saya <span className={`${textPrimary} font-semibold`}>{USER_DATA.shortName}</span>, seorang Junior Web Developer yang bersemangat dalam menciptakan solusi web yang efisien dan estetik. Spesialis dalam <span className="text-blue-400 font-medium">Python Flask</span> & <span className="text-cyan-400 font-medium">PHP</span>.
             </p>
 
-            {/* CTA Buttons */}
             <div className="flex flex-wrap items-center gap-3 sm:gap-4 pt-2 sm:pt-4 justify-center lg:justify-start">
               <button
                 onClick={() => scrollToSection("proyek")}
@@ -999,6 +962,8 @@ const App = () => {
               >
                 <span className="relative z-10 flex items-center gap-2">Lihat Proyek <ChevronRight size={18} className="group-hover:translate-x-1 transition-transform" /></span>
               </button>
+              
+              
               <a
                 href="#"
                 onClick={(e) => { e.preventDefault(); scrollToSection("kontak"); }}
@@ -1006,6 +971,7 @@ const App = () => {
               >
                 <Download size={18} /> Resume
               </a>
+
               <div className="flex items-center gap-2">
                 <a href={USER_DATA.socials.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub" className={`w-11 h-11 sm:w-12 sm:h-12 rounded-xl ${isDark ? "bg-white/5 border-white/10 hover:bg-white/10 hover:border-blue-500/50" : "bg-slate-100 border-slate-200 hover:bg-slate-200 hover:border-blue-300"} border flex items-center justify-center hover:scale-110 transition-all duration-300`}>
                   <Github size={20} />
@@ -1017,10 +983,10 @@ const App = () => {
                   {copiedEmail ? <Check size={20} className="text-green-500" /> : <Mail size={20} />}
                 </button>
               </div>
+
             </div>
           </RevealSection>
 
-          {/* Right Column: Profile Photo */}
           <RevealSection delay={200} className="w-full lg:w-2/5 flex justify-center lg:justify-end items-center">
             <div className="relative group w-full max-w-[320px] sm:max-w-[380px] md:max-w-[400px]">
               <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 blur-2xl opacity-20 group-hover:opacity-30 transition-opacity duration-700 scale-110" aria-hidden="true" />
@@ -1040,7 +1006,6 @@ const App = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
               </div>
 
-              {/* Floating Tech Badges - Better mobile layout */}
               <div className="absolute -bottom-4 sm:-bottom-6 left-1/2 -translate-x-1/2 flex flex-wrap justify-center gap-2 sm:gap-3 w-full max-w-lg px-2 sm:px-4 z-10">
                 {TECH_STACK.slice(0, 6).map((tech, index) => (
                   <div
@@ -1057,7 +1022,6 @@ const App = () => {
           </RevealSection>
         </div>
 
-        {/* Scroll indicator */}
         <div className="absolute bottom-4 sm:bottom-8 left-1/2 -translate-x-1/2 hidden lg:flex flex-col items-center gap-2 animate-bounce">
           <span className={`text-xs ${textMuted} font-medium`}>Scroll</span>
           <ArrowDown size={16} className={textMuted} />
@@ -1094,89 +1058,40 @@ const App = () => {
             </div>
           </RevealSection>
 
-<<<<<<< HEAD
           <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 md:gap-16">
-            {/* Skill Section */}
             <RevealSection delay={100}>
               <div className="space-y-6 sm:space-y-8">
-                {/* Section Header */}
                 <h3 className={`text-lg sm:text-xl font-bold ${textPrimary} flex items-center gap-3 justify-center md:justify-start`}>
-=======
-          <div className="grid lg:grid-cols-2 gap-16">
-            {/* Skill Section */}
-            <RevealSection delay={100}>
-              <div className="space-y-8">
-                {/* Section Header */}
-                <h3 className={`text-xl font-bold ${textPrimary} flex items-center gap-3`}>
->>>>>>> 54dafe4cd251ff6a383e47d207f9211900fd534f
                   <div className="w-2 h-8 bg-gradient-to-b from-blue-600 to-cyan-500 rounded-full animate-pulse" />
                   Proficiency
                 </h3>
 
-<<<<<<< HEAD
-                {/* Skills Grid - Adaptive columns */}
                 <div className="grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4">
                   {USER_DATA.skills.languages.map((skill, i) => (
                     <div
                       key={i}
                       className="group relative flex flex-col items-center justify-center p-4 sm:p-6 rounded-xl sm:rounded-2xl border transition-all duration-300 ease-out text-center min-h-[100px] sm:min-h-[120px]"
-=======
-                {/* Skills Grid */}
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-                  {USER_DATA.skills.languages.map((skill, i) => (
-                    <div
-                      key={i}
-                      className="group relative flex flex-col items-center justify-center p-6 rounded-2xl border transition-all duration-300 ease-out text-center"
->>>>>>> 54dafe4cd251ff6a383e47d207f9211900fd534f
                       style={{
                         background: isDark ? "rgba(255,255,255,0.03)" : "rgba(255,255,255,0.65)",
                         borderColor: isDark ? "rgba(255,255,255,0.10)" : "rgba(15,23,42,0.10)",
                       }}
                     >
-<<<<<<< HEAD
                       <div className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-br from-blue-500/10 to-cyan-500/10 rounded-xl sm:rounded-2xl transition-opacity duration-300 pointer-events-none" />
                       <div className="text-2xl sm:text-3xl mb-2 sm:mb-3 transform group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300 ease-out filter drop-shadow-sm">
                         {skill.icon}
                       </div>
                       <span className={`text-xs sm:text-sm font-semibold transition-colors duration-300`} style={{ color: isDark ? "rgba(148,163,184,1)" : "rgba(71,85,105,1)" }}>
-=======
-                      {/* Efek Spotlight Halus di Background saat Hover */}
-                      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-br from-blue-500/10 to-cyan-500/10 rounded-2xl transition-opacity duration-300 pointer-events-none" />
-
-                      {/* Icon Skill */}
-                      <div className="text-3xl mb-3 transform group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300 ease-out filter drop-shadow-sm" style={{ color: undefined }}>
-                        {skill.icon}
-                      </div>
-
-                      {/* Nama Skill */}
-                      <span
-                        className={`text-sm font-semibold transition-colors duration-300`}
-                        style={{ color: isDark ? "rgba(148,163,184,1)" : "rgba(71,85,105,1)" }}
-                      >
->>>>>>> 54dafe4cd251ff6a383e47d207f9211900fd534f
                         <span className="group-hover:text-blue-400 dark:group-hover:text-cyan-400">
                           {skill.name}
                         </span>
                       </span>
-<<<<<<< HEAD
                       <div className="pointer-events-none absolute inset-0 rounded-xl sm:rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ border: `1px solid ${isDark ? "rgba(59,130,246,0.35)" : "rgba(14,165,233,0.35)"}` }} />
-=======
-
-                      {/* Hover accent border */}
-                      <div
-                        className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                        style={{
-                          border: `1px solid ${isDark ? "rgba(59,130,246,0.35)" : "rgba(14,165,233,0.35)"}`,
-                        }}
-                      />
->>>>>>> 54dafe4cd251ff6a383e47d207f9211900fd534f
                     </div>
                   ))}
                 </div>
               </div>
             </RevealSection>
 
-            {/* Tools & Soft Skills */}
             <RevealSection delay={200}>
               <div className={`${bgCard} border ${borderCard} rounded-2xl sm:rounded-[2rem] p-6 sm:p-8 md:p-10`}>
                 <h3 className={`text-lg sm:text-xl font-bold ${textPrimary} mb-6 sm:mb-8 flex items-center gap-3 justify-center md:justify-start`}>
@@ -1186,11 +1101,7 @@ const App = () => {
                   {USER_DATA.skills.tools.map((tool, i) => (
                     <span
                       key={i}
-<<<<<<< HEAD
                       className={`px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg sm:rounded-xl border transition-all duration-300 flex items-center gap-2 text-xs sm:text-sm font-medium cursor-default`}
-=======
-                      className={`px-4 py-2.5 rounded-xl border transition-all duration-300 flex items-center gap-2 text-sm font-medium cursor-default`}
->>>>>>> 54dafe4cd251ff6a383e47d207f9211900fd534f
                       style={{
                         background: isDark ? "rgba(255,255,255,0.04)" : "rgba(241,245,249,1)",
                         borderColor: isDark ? "rgba(255,255,255,0.08)" : "rgba(15,23,42,0.10)",
@@ -1212,22 +1123,14 @@ const App = () => {
                     {USER_DATA.skills.softSkills.map((skill, i) => (
                       <div
                         key={i}
-<<<<<<< HEAD
                         className={`flex items-center gap-2 sm:gap-3 text-xs sm:text-sm p-2.5 sm:p-3 rounded-lg sm:rounded-xl border transition-all duration-300 group cursor-default`}
-=======
-                        className={`flex items-center gap-3 text-sm p-3 rounded-xl border transition-all duration-300 group cursor-default`}
->>>>>>> 54dafe4cd251ff6a383e47d207f9211900fd534f
                         style={{
                           background: isDark ? "rgba(255,255,255,0.04)" : "rgba(248,250,252,1)",
                           borderColor: isDark ? "rgba(255,255,255,0.08)" : "rgba(15,23,42,0.10)",
                           color: isDark ? "rgba(148,163,184,1)" : "rgba(71,85,105,1)",
                         }}
                       >
-<<<<<<< HEAD
                         <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-gradient-to-br from-blue-500/20 to-cyan-500/20 flex items-center justify-center flex-shrink-0">
-=======
-                        <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500/20 to-cyan-500/20 flex items-center justify-center flex-shrink-0">
->>>>>>> 54dafe4cd251ff6a383e47d207f9211900fd534f
                           {skill.icon}
                         </div>
                         <span className="font-medium transition-colors group-hover:text-blue-400 dark:group-hover:text-cyan-400">
@@ -1253,11 +1156,7 @@ const App = () => {
                 <span className="text-blue-400 text-xs sm:text-sm font-bold tracking-widest uppercase">Portfolio</span>
                 <div className="w-10 sm:w-12 h-1 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full" />
               </div>
-<<<<<<< HEAD
               <h2 className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black ${textPrimary} mb-4 sm:mb-6 tracking-tight`} style={{ fontSize: 'clamp(1.875rem, 5vw, 3.75rem)' }}>
-=======
-              <h2 className={`text-4xl md:text-6xl font-black ${textPrimary} mb-6 tracking-tight`}>
->>>>>>> 54dafe4cd251ff6a383e47d207f9211900fd534f
                 My <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">Projects</span>
               </h2>
               <p className={`${textSecondary} text-base sm:text-lg max-w-2xl mx-auto px-2`}>
@@ -1305,7 +1204,6 @@ const App = () => {
                   <article
                     className={`group ${bgCard} rounded-2xl sm:rounded-[2rem] overflow-hidden border ${borderCard} hover:border-blue-500/30 transition-all duration-500 hover:-translate-y-2 sm:hover:-translate-y-3 flex flex-col shadow-lg hover:shadow-2xl hover:shadow-blue-500/5 ${viewMode === "list" ? "flex-row" : ""}`}
                   >
-                    {/* Image */}
                     <div className={`relative overflow-hidden ${viewMode === "list" ? "w-48 sm:w-64 h-40 sm:h-48 flex-shrink-0" : "h-48 sm:h-56"}`}>
                       <div className={`absolute inset-0 bg-gradient-to-br ${project.accent} opacity-80`} />
                       {project.image && (
@@ -1334,14 +1232,16 @@ const App = () => {
 
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-4 sm:p-6">
                         <div className="flex gap-2 sm:gap-3 w-full">
-                          <a
-                            href={project.github}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex-1 flex items-center justify-center gap-2 py-2 sm:py-2.5 bg-white/10 backdrop-blur-xl border border-white/20 rounded-lg sm:rounded-xl text-white text-[10px] sm:text-xs font-bold hover:bg-white/20 transition-all min-h-[40px]"
-                          >
-                            <Github size={14} /> Source
-                          </a>
+                          {project.github && (
+                            <a
+                              href={project.github}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="flex-1 flex items-center justify-center gap-2 py-2 sm:py-2.5 bg-white/10 backdrop-blur-xl border border-white/20 rounded-lg sm:rounded-xl text-white text-[10px] sm:text-xs font-bold hover:bg-white/20 transition-all min-h-[40px]"
+                            >
+                              <Github size={14} /> Source
+                            </a>
+                          )}
                           {project.live && (
                             <a
                               href={project.live}
@@ -1356,7 +1256,6 @@ const App = () => {
                       </div>
                     </div>
 
-                    {/* Content */}
                     <div className={`p-4 sm:p-6 flex-grow flex flex-col ${viewMode === "list" ? "justify-center" : ""}`}>
                       <h3 className={`text-lg sm:text-xl font-bold ${textPrimary} mb-2 sm:mb-3 group-hover:text-blue-400 transition-colors flex items-center gap-2`}>
                         {project.title}
@@ -1480,7 +1379,6 @@ const App = () => {
           </RevealSection>
 
           <div className="grid lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12">
-            {/* Contact Info */}
             <RevealSection>
               <div className="space-y-4 sm:space-y-6">
                 {[
@@ -1537,11 +1435,11 @@ const App = () => {
                       </a>
                     )}
                   </div>
+
                 ))}
               </div>
             </RevealSection>
 
-            {/* Contact Form */}
             <RevealSection delay={200}>
               <form onSubmit={handleContactSubmit} className={`p-5 sm:p-8 rounded-2xl sm:rounded-[2rem] ${bgCard} border ${borderCard}`} noValidate>
                 <h3 className={`text-xl sm:text-2xl font-bold ${textPrimary} mb-4 sm:mb-6`}>Kirim Pesan</h3>
@@ -1616,11 +1514,7 @@ const App = () => {
       </section>
 
       {/* Domainesia Banner */}
-<<<<<<< HEAD
       <div className="flex justify-center py-6 sm:py-8 px-4" hidden>
-=======
-      <div className="flex justify-center py-8" hidden>
->>>>>>> 54dafe4cd251ff6a383e47d207f9211900fd534f
         <a href="https://my.domainesia.com/ref.php?u=27021" target="_blank" rel="noopener noreferrer" className="hover:scale-105 transition-transform">
           <img
             src="https://dnva.me/v9ev4"
@@ -1686,13 +1580,11 @@ const App = () => {
 
         html { scroll-behavior: smooth; }
 
-        /* Custom breakpoint for extra small devices */
         @media (min-width: 480px) {
           .xs\\:block { display: block; }
           .xs\\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
         }
 
-        /* Line clamp utility */
         .line-clamp-2 {
           display: -webkit-box;
           -webkit-line-clamp: 2;
@@ -1708,7 +1600,6 @@ const App = () => {
           }
         }
 
-        /* Safe area support for iOS */
         @supports (padding: max(0px)) {
           .safe-area-top { padding-top: max(1rem, env(safe-area-inset-top)); }
           .safe-area-bottom { padding-bottom: max(1rem, env(safe-area-inset-bottom)); }
