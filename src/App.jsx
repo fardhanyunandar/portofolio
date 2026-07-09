@@ -514,6 +514,10 @@ const TiltCard = memo(({ children, className = "", intensity = 15 }) => {
   );
 });
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 54dafe4cd251ff6a383e47d207f9211900fd534f
 const Toast = memo(({ message, type = "success", isVisible, onClose }) => {
   const icons = {
     success: <CheckCircle2 className="text-green-500 flex-shrink-0" size={20} />,
@@ -791,7 +795,11 @@ const App = () => {
   const { bg, bgNav, bgCard, bgCardHover, borderCard, textPrimary, textSecondary, textMuted, bgToolTag, bgSkillTrack, bgInput } = themeClasses;
 
   return (
+<<<<<<< HEAD
     <div className={`min-h-screen ${bg} ${textPrimary} font-sans selection:bg-blue-500/30 transition-colors duration-500 relative`} style={{ paddingTop: 'env(safe-area-inset-top)', paddingBottom: 'env(safe-area-inset-bottom)' }}>
+=======
+    <div className={`min-h-screen ${bg} ${textPrimary} font-sans selection:bg-blue-500/30 transition-colors duration-500 relative`}>
+>>>>>>> 54dafe4cd251ff6a383e47d207f9211900fd534f
 
       {/* Animated Background */}
       <AnimatedBackground isDark={isDark} />
@@ -855,7 +863,11 @@ const App = () => {
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
+<<<<<<< HEAD
                 className={`relative px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium rounded-xl transition-all duration-300 min-h-[44px] ${activeSection === item.id
+=======
+                className={`relative px-4 py-2 text-sm font-medium rounded-xl transition-all duration-300 ${activeSection === item.id
+>>>>>>> 54dafe4cd251ff6a383e47d207f9211900fd534f
                     ? isDark ? "text-white bg-white/10" : "text-slate-900 bg-white shadow-sm"
                     : isDark ? "text-slate-400 hover:text-white" : "text-slate-500 hover:text-slate-900"
                   }`}
@@ -951,8 +963,13 @@ const App = () => {
       <section id="profil" className="relative pt-24 sm:pt-28 md:pt-32 pb-16 sm:pb-20 md:pb-24 px-4 sm:px-6 min-h-screen flex items-center">
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-8 sm:gap-12 lg:gap-16 items-center w-full">
           {/* Left Column */}
+<<<<<<< HEAD
           <RevealSection className="w-full lg:w-3/5 space-y-6 sm:space-y-8 text-center lg:text-left">
             <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 bg-blue-500/10 border border-blue-500/20 rounded-full text-blue-400 text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase">
+=======
+          <RevealSection className="w-full lg:w-3/5 space-y-8">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-500/10 border border-blue-500/20 rounded-full text-blue-400 text-xs font-bold tracking-[0.2em] uppercase">
+>>>>>>> 54dafe4cd251ff6a383e47d207f9211900fd534f
               <Sparkles size={14} className="animate-pulse" /> Hello, I&#39;m Fardhan!
             </div>
 
@@ -1077,37 +1094,82 @@ const App = () => {
             </div>
           </RevealSection>
 
+<<<<<<< HEAD
           <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 md:gap-16">
             {/* Skill Section */}
             <RevealSection delay={100}>
               <div className="space-y-6 sm:space-y-8">
                 {/* Section Header */}
                 <h3 className={`text-lg sm:text-xl font-bold ${textPrimary} flex items-center gap-3 justify-center md:justify-start`}>
+=======
+          <div className="grid lg:grid-cols-2 gap-16">
+            {/* Skill Section */}
+            <RevealSection delay={100}>
+              <div className="space-y-8">
+                {/* Section Header */}
+                <h3 className={`text-xl font-bold ${textPrimary} flex items-center gap-3`}>
+>>>>>>> 54dafe4cd251ff6a383e47d207f9211900fd534f
                   <div className="w-2 h-8 bg-gradient-to-b from-blue-600 to-cyan-500 rounded-full animate-pulse" />
                   Proficiency
                 </h3>
 
+<<<<<<< HEAD
                 {/* Skills Grid - Adaptive columns */}
                 <div className="grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4">
                   {USER_DATA.skills.languages.map((skill, i) => (
                     <div
                       key={i}
                       className="group relative flex flex-col items-center justify-center p-4 sm:p-6 rounded-xl sm:rounded-2xl border transition-all duration-300 ease-out text-center min-h-[100px] sm:min-h-[120px]"
+=======
+                {/* Skills Grid */}
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                  {USER_DATA.skills.languages.map((skill, i) => (
+                    <div
+                      key={i}
+                      className="group relative flex flex-col items-center justify-center p-6 rounded-2xl border transition-all duration-300 ease-out text-center"
+>>>>>>> 54dafe4cd251ff6a383e47d207f9211900fd534f
                       style={{
                         background: isDark ? "rgba(255,255,255,0.03)" : "rgba(255,255,255,0.65)",
                         borderColor: isDark ? "rgba(255,255,255,0.10)" : "rgba(15,23,42,0.10)",
                       }}
                     >
+<<<<<<< HEAD
                       <div className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-br from-blue-500/10 to-cyan-500/10 rounded-xl sm:rounded-2xl transition-opacity duration-300 pointer-events-none" />
                       <div className="text-2xl sm:text-3xl mb-2 sm:mb-3 transform group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300 ease-out filter drop-shadow-sm">
                         {skill.icon}
                       </div>
                       <span className={`text-xs sm:text-sm font-semibold transition-colors duration-300`} style={{ color: isDark ? "rgba(148,163,184,1)" : "rgba(71,85,105,1)" }}>
+=======
+                      {/* Efek Spotlight Halus di Background saat Hover */}
+                      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-br from-blue-500/10 to-cyan-500/10 rounded-2xl transition-opacity duration-300 pointer-events-none" />
+
+                      {/* Icon Skill */}
+                      <div className="text-3xl mb-3 transform group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300 ease-out filter drop-shadow-sm" style={{ color: undefined }}>
+                        {skill.icon}
+                      </div>
+
+                      {/* Nama Skill */}
+                      <span
+                        className={`text-sm font-semibold transition-colors duration-300`}
+                        style={{ color: isDark ? "rgba(148,163,184,1)" : "rgba(71,85,105,1)" }}
+                      >
+>>>>>>> 54dafe4cd251ff6a383e47d207f9211900fd534f
                         <span className="group-hover:text-blue-400 dark:group-hover:text-cyan-400">
                           {skill.name}
                         </span>
                       </span>
+<<<<<<< HEAD
                       <div className="pointer-events-none absolute inset-0 rounded-xl sm:rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ border: `1px solid ${isDark ? "rgba(59,130,246,0.35)" : "rgba(14,165,233,0.35)"}` }} />
+=======
+
+                      {/* Hover accent border */}
+                      <div
+                        className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                        style={{
+                          border: `1px solid ${isDark ? "rgba(59,130,246,0.35)" : "rgba(14,165,233,0.35)"}`,
+                        }}
+                      />
+>>>>>>> 54dafe4cd251ff6a383e47d207f9211900fd534f
                     </div>
                   ))}
                 </div>
@@ -1124,7 +1186,11 @@ const App = () => {
                   {USER_DATA.skills.tools.map((tool, i) => (
                     <span
                       key={i}
+<<<<<<< HEAD
                       className={`px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg sm:rounded-xl border transition-all duration-300 flex items-center gap-2 text-xs sm:text-sm font-medium cursor-default`}
+=======
+                      className={`px-4 py-2.5 rounded-xl border transition-all duration-300 flex items-center gap-2 text-sm font-medium cursor-default`}
+>>>>>>> 54dafe4cd251ff6a383e47d207f9211900fd534f
                       style={{
                         background: isDark ? "rgba(255,255,255,0.04)" : "rgba(241,245,249,1)",
                         borderColor: isDark ? "rgba(255,255,255,0.08)" : "rgba(15,23,42,0.10)",
@@ -1146,14 +1212,22 @@ const App = () => {
                     {USER_DATA.skills.softSkills.map((skill, i) => (
                       <div
                         key={i}
+<<<<<<< HEAD
                         className={`flex items-center gap-2 sm:gap-3 text-xs sm:text-sm p-2.5 sm:p-3 rounded-lg sm:rounded-xl border transition-all duration-300 group cursor-default`}
+=======
+                        className={`flex items-center gap-3 text-sm p-3 rounded-xl border transition-all duration-300 group cursor-default`}
+>>>>>>> 54dafe4cd251ff6a383e47d207f9211900fd534f
                         style={{
                           background: isDark ? "rgba(255,255,255,0.04)" : "rgba(248,250,252,1)",
                           borderColor: isDark ? "rgba(255,255,255,0.08)" : "rgba(15,23,42,0.10)",
                           color: isDark ? "rgba(148,163,184,1)" : "rgba(71,85,105,1)",
                         }}
                       >
+<<<<<<< HEAD
                         <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-gradient-to-br from-blue-500/20 to-cyan-500/20 flex items-center justify-center flex-shrink-0">
+=======
+                        <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500/20 to-cyan-500/20 flex items-center justify-center flex-shrink-0">
+>>>>>>> 54dafe4cd251ff6a383e47d207f9211900fd534f
                           {skill.icon}
                         </div>
                         <span className="font-medium transition-colors group-hover:text-blue-400 dark:group-hover:text-cyan-400">
@@ -1179,7 +1253,11 @@ const App = () => {
                 <span className="text-blue-400 text-xs sm:text-sm font-bold tracking-widest uppercase">Portfolio</span>
                 <div className="w-10 sm:w-12 h-1 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full" />
               </div>
+<<<<<<< HEAD
               <h2 className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black ${textPrimary} mb-4 sm:mb-6 tracking-tight`} style={{ fontSize: 'clamp(1.875rem, 5vw, 3.75rem)' }}>
+=======
+              <h2 className={`text-4xl md:text-6xl font-black ${textPrimary} mb-6 tracking-tight`}>
+>>>>>>> 54dafe4cd251ff6a383e47d207f9211900fd534f
                 My <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">Projects</span>
               </h2>
               <p className={`${textSecondary} text-base sm:text-lg max-w-2xl mx-auto px-2`}>
@@ -1538,7 +1616,11 @@ const App = () => {
       </section>
 
       {/* Domainesia Banner */}
+<<<<<<< HEAD
       <div className="flex justify-center py-6 sm:py-8 px-4" hidden>
+=======
+      <div className="flex justify-center py-8" hidden>
+>>>>>>> 54dafe4cd251ff6a383e47d207f9211900fd534f
         <a href="https://my.domainesia.com/ref.php?u=27021" target="_blank" rel="noopener noreferrer" className="hover:scale-105 transition-transform">
           <img
             src="https://dnva.me/v9ev4"
